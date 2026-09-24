@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SGSI para el Ministerio de Hacienda de Costa Rica</title>
+  <meta name="description" content="Presentación web universitaria sobre SGSI para el Ministerio de Hacienda de Costa Rica.">
+
+  <!-- Reveal.js, Mermaid, Font Awesome y fuentes externas. Abrir index.html localmente es suficiente. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="sgsi-deck">
+  <canvas id="tech-canvas" aria-hidden="true"></canvas>
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="scanline" aria-hidden="true"></div>
+
+  <div class="floating-code" aria-hidden="true">
+    <span>SGSI</span>
+    <span>ISO 27001</span>
+    <span>ACCESS CONTROL</span>
+    <span>MFA · IDENTITY</span>
+    <span>SEGMENTATION</span>
+    <span>BACKUP · RECOVERY</span>
+  </div>
+
+  <div class="reveal">
+    <div class="slides">
+<section class="sgsi-slide sgsi-tone--info hero-slide sgsi-hero slide-01" data-transition="zoom-in fade-out" data-speaker="David" data-duration="0:15">
+<div class="sgsi-hero-layout">
+<div class="sgsi-hero-copy">
+<header class="sgsi-heading">
+<div class="kicker sgsi-eyebrow">CASO DE ESTUDIO · SGSI</div>
+<h1><span>SGSI para el</span>
+<span>Ministerio de Hacienda</span>
+<span>de Costa Rica</span></h1>
+</header>
+<p class="subtitle">Propuesta de prevención, contención y recuperación ante credenciales comprometidas y ransomware</p>
+<div class="sgsi-hero-meta">
+<div><span class="sgsi-hero-meta-label">CURSO</span><strong>Seguridad y Auditoría de Sistemas</strong></div>
+<div><span class="sgsi-hero-meta-label">EQUIPO</span><strong>David · Walder · Francisco · Luis</strong></div>
+</div>
+</div>
+<div class="sgsi-hero-visual" aria-hidden="true">
+<div class="sgsi-hero-network">
+<svg viewBox="0 0 460 460" role="presentation">
+<circle class="sgsi-hero-orbit-ring" cx="230" cy="205" r="142"></circle>
+<circle class="sgsi-hero-orbit-ring sgsi-hero-orbit-ring--inner" cx="230" cy="205" r="98"></circle>
+<path class="sgsi-hero-network-link" d="M230 205 L230 60 M230 205 L92 156 M230 205 L368 156 M230 205 L118 338 M230 205 L230 382 M230 205 L342 338"></path>
+<circle class="sgsi-hero-network-point" cx="230" cy="60" r="5"></circle>
+<circle class="sgsi-hero-network-point" cx="92" cy="156" r="5"></circle>
+<circle class="sgsi-hero-network-point" cx="368" cy="156" r="5"></circle>
+<circle class="sgsi-hero-network-point" cx="118" cy="338" r="5"></circle>
+<circle class="sgsi-hero-network-point" cx="230" cy="382" r="5"></circle>
+<circle class="sgsi-hero-network-point" cx="342" cy="338" r="5"></circle>
+</svg>
+<div class="sgsi-hero-emblem"><i class="fa-solid fa-shield-halved"></i><i class="fa-solid fa-building-columns"></i></div>
+<span class="sgsi-hero-node sgsi-hero-node--top"><i class="fa-solid fa-network-wired"></i></span>
+<span class="sgsi-hero-node sgsi-hero-node--left"><i class="fa-solid fa-server"></i></span>
+<span class="sgsi-hero-node sgsi-hero-node--right"><i class="fa-solid fa-database"></i></span>
+<span class="sgsi-hero-node sgsi-hero-node--bottom-left"></span>
+<span class="sgsi-hero-node sgsi-hero-node--bottom"></span>
+<span class="sgsi-hero-node sgsi-hero-node--bottom-right"></span>
+</div>
+</div>
+</div>
+<aside class="notes"><p><strong>David · 15 segundos</strong></p><p>Buenos días. Nuestro caso plantea un SGSI para el Ministerio de Hacienda de Costa Rica, tomando como punto de partida un escenario de ataque ocurrido en abril de 2022. La propuesta se centra en tres frentes: proteger credenciales, fortalecer la autenticación y poder seguir operando y recuperarse ante un ransomware.</p></aside>
+</section>
+
+<section class="sgsi-slide sgsi-tone--info slide-02" data-transition="slide" data-speaker="David" data-duration="1:00">
+<header class="sgsi-heading">
+<div class="section-label sgsi-eyebrow">SGSI · David</div>
+<h2>El problema no termina en una contraseña</h2>
+</header>
+<p class="lead">El SGSI debe reducir el riesgo antes, durante y después del ataque.</p>
+<div class="sgsi-incident-pipeline" aria-label="Progresión del incidente">
+<article class="sgsi-incident-stage sgsi-incident-stage--warning fragment" data-fragment-index="0">
+<div class="sgsi-incident-card">
+<span class="sgsi-incident-number">01</span>
+<i class="fa-solid fa-key security-icon" aria-hidden="true"></i>
+<strong>Credencial filtrada</strong>
+<span class="sgsi-incident-state" aria-hidden="true"><i></i></span>
+</div>
+</article>
+<article class="sgsi-incident-stage sgsi-incident-stage--intrusion fragment" data-fragment-index="1">
+<div class="sgsi-incident-card">
+<span class="sgsi-incident-number">02</span>
+<i class="fa-solid fa-right-to-bracket security-icon" aria-hidden="true"></i>
+<strong>Acceso no autorizado</strong>
+<span class="sgsi-incident-state" aria-hidden="true"><i></i></span>
+</div>
+</article>
+<article class="sgsi-incident-stage sgsi-incident-stage--danger fragment" data-fragment-index="2">
+<div class="sgsi-incident-card">
+<span class="sgsi-incident-number">03</span>
+<span class="sgsi-incident-icons" aria-hidden="true"><i class="fa-solid fa-network-wired security-icon"></i><i class="fa-solid fa-lock"></i></span>
+<strong>Movimiento lateral y cifrado</strong>
+<span class="sgsi-incident-state" aria-hidden="true"><i></i></span>
+</div>
+</article>
+<article class="sgsi-incident-stage sgsi-incident-stage--critical fragment" data-fragment-index="3">
+<div class="sgsi-incident-card">
+<span class="sgsi-incident-number">04</span>
+<span class="sgsi-incident-icons" aria-hidden="true"><i class="fa-solid fa-server security-icon"></i><i class="fa-solid fa-triangle-exclamation"></i></span>
+<strong>Interrupción del servicio</strong>
+<span class="sgsi-incident-state" aria-hidden="true"><i></i></span>
+</div>
+</article>
+</div>
+<div class="sgsi-incident-objective"><i class="fa-solid fa-shield-halved security-icon" aria-hidden="true"></i><div><strong>Objetivo:</strong><span> prevenir el acceso indebido y mantener los servicios críticos.</span></div></div>
+<aside class="notes"><p><strong>David · 1 minuto</strong></p><p>El enfoque del documento no es tratar el incidente como un problema aislado. Se consideran cuatro riesgos principales: ingreso con credenciales filtradas, movimiento lateral dentro de la red, cifrado de información y pérdida de respaldos. Por eso se propone un SGSI que no solo evita accesos indebidos, sino que también prepara a la institución para contener el ataque y recuperar sus servicios.</p><p>El SGSI es una respuesta integral, no una sola herramienta.</p></aside>
+</section>
+
+<section class="sgsi-slide sgsi-compact sgsi-tone--info slide-03" data-transition="fade" data-speaker="David" data-duration="1:10">
+<header class="sgsi-heading">
+<div class="section-label sgsi-eyebrow">SGSI · David</div>
+<h2>Alcance y responsabilidades</h2>
+</header>
+<div class="sgsi-governance-layout">
+<div class="sgsi-scope-panel fragment" data-fragment-index="0" aria-labelledby="sgsi-scope-title">
+<h3 id="sgsi-scope-title">Dentro del alcance</h3>
+<div class="sgsi-scope-map">
+<svg viewBox="0 0 600 330" preserveAspectRatio="none" aria-hidden="true">
+<path d="M300 165 L140 62 M300 165 L460 62 M300 165 L100 165 M300 165 L500 165 M300 165 L146 270 M300 165 L454 270"></path>
+</svg>
+<div class="sgsi-scope-hub"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><strong>SGSI</strong></div>
+<article class="sgsi-scope-node sgsi-scope-node--accounts"><i class="fa-solid fa-users security-icon" aria-hidden="true"></i><span>Cuentas de funcionarios y proveedores</span></article>
+<article class="sgsi-scope-node sgsi-scope-node--remote"><i class="fa-solid fa-globe security-icon" aria-hidden="true"></i><span>Accesos remotos</span></article>
+<article class="sgsi-scope-node sgsi-scope-node--devices"><i class="fa-solid fa-laptop security-icon" aria-hidden="true"></i><span>Equipos de trabajo</span></article>
+<article class="sgsi-scope-node sgsi-scope-node--servers"><i class="fa-solid fa-server security-icon" aria-hidden="true"></i><span>Servidores y redes</span></article>
+<article class="sgsi-scope-node sgsi-scope-node--data"><i class="fa-solid fa-database security-icon" aria-hidden="true"></i><span>Bases de datos</span></article>
+<article class="sgsi-scope-node sgsi-scope-node--backup"><i class="fa-solid fa-box-archive security-icon" aria-hidden="true"></i><span>Respaldos de servicios tributarios y aduaneros</span></article>
+</div>
+</div>
+<div class="sgsi-roles-panel" aria-labelledby="sgsi-roles-title">
+<h3 id="sgsi-roles-title">Quién hace qué</h3>
+<div class="sgsi-role-list">
+<article class="sgsi-role-row fragment" data-fragment-index="1"><i class="fa-solid fa-building-columns security-icon" aria-hidden="true"></i><div><strong>Dirección</strong><span>aprueba política y recursos</span></div></article>
+<article class="sgsi-role-row fragment" data-fragment-index="2"><i class="fa-solid fa-shield-halved security-icon" aria-hidden="true"></i><div><strong>Seguridad</strong><span>supervisa cumplimiento</span></div></article>
+<article class="sgsi-role-row fragment" data-fragment-index="3"><i class="fa-solid fa-server security-icon" aria-hidden="true"></i><div><strong>TI</strong><span>implementa controles</span></div></article>
+<article class="sgsi-role-row fragment" data-fragment-index="4"><i class="fa-solid fa-diagram-project security-icon" aria-hidden="true"></i><div><strong>Responsables de proceso</strong><span>validan continuidad y recuperación</span></div></article>
+</div>
+</div>
+</div>
+<div class="sgsi-frequency-row fragment" data-fragment-index="5">
+<article><i class="fa-solid fa-calendar-check security-icon" aria-hidden="true"></i><div><strong>MENSUAL</strong><span>Revisión de accesos y alertas</span></div></article>
+<article><i class="fa-solid fa-calendar-check security-icon" aria-hidden="true"></i><div><strong>SEMESTRAL</strong><span>Pruebas de aislamiento y recuperación</span></div></article>
+</div>
+<aside class="notes"><p><strong>David · 1 minuto 10 segundos</strong></p><p>El alcance no se limita a los servidores. Incluye cuentas de funcionarios y proveedores, accesos remotos, equipos, redes, bases de datos y respaldos de los servicios tributarios y aduaneros. También se distribuyen responsabilidades: la dirección aprueba política y recursos, seguridad supervisa, TI implementa y cada proceso valida que pueda continuar y recuperarse. Además, los accesos y alertas se revisan mensualmente y las pruebas de aislamiento y recuperación se realizan de forma semestral.</p><p><strong>Transición a Walder:</strong> Con ese alcance definido, el primer control importante es evitar que una credencial comprometida vuelva a ser la puerta de entrada. Walder explica la primera fase.</p></aside>
+</section>
+
+<section class="sgsi-slide sgsi-tone--warning slide-04" data-transition="convex" data-speaker="Walder" data-duration="1:05">
+<header class="sgsi-heading">
+<div class="section-label sgsi-eyebrow sgsi-phase">FASE 1 · PREVENCIÓN</div>
+<h2>Contraseñas y secretos bajo control</h2>
+</header>
+<div class="sgsi-password-controls" aria-label="Controles ISO aplicables"><span class="sgsi-iso-chip"><code>A.5.15</code> · Control de acceso</span><span class="sgsi-iso-chip"><code>A.5.17</code> · Información de autenticación</span></div>
+<div class="sgsi-password-grid" aria-label="Cuatro barreras preventivas">
+<article class="sgsi-password-barrier sgsi-password-barrier--identity fragment" data-fragment-index="0">
+<div class="sgsi-password-barrier-head"><span class="sgsi-password-number">01</span><i class="fa-solid fa-user-lock security-icon" aria-hidden="true"></i><h3>Cuenta individual</h3></div>
+<ul><li>Sin compartir credenciales</li><li>Separar cuenta administrativa de cuenta diaria</li></ul>
+</article>
+<article class="sgsi-password-barrier sgsi-password-barrier--length fragment" data-fragment-index="1">
+<div class="sgsi-password-barrier-head"><span class="sgsi-password-number">02</span><i class="fa-solid fa-key security-icon" aria-hidden="true"></i><h3><strong>15+</strong><span>caracteres</span></h3></div>
+<ul><li>Rechazar claves comunes o comprometidas</li><li>Gestor institucional</li></ul>
+</article>
+<article class="sgsi-password-barrier sgsi-password-barrier--mfa fragment" data-fragment-index="2">
+<div class="sgsi-password-barrier-head"><span class="sgsi-password-number">03</span><i class="fa-solid fa-fingerprint security-icon" aria-hidden="true"></i><h3>MFA en accesos críticos</h3></div>
+<div class="sgsi-password-access"><span>Acceso remoto</span><span>Sistemas críticos</span></div>
+</article>
+<article class="sgsi-password-barrier sgsi-password-barrier--vault fragment" data-fragment-index="3">
+<div class="sgsi-password-barrier-head"><span class="sgsi-password-number">04</span><span class="sgsi-password-vault-visual" aria-hidden="true"><i class="fa-solid fa-lock"></i></span><h3>Secretos en bóveda</h3></div>
+<ul><li>Llaves API y contraseñas de servicio</li><li>Nunca en código, archivos públicos o bitácoras</li></ul>
+</article>
+<div class="sgsi-password-core" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
+</div>
+<aside class="notes"><p><strong>Walder · 1 minuto 5 segundos</strong></p><p>La primera fase se apoya en los controles A.5.15 y A.5.17. La propuesta exige cuentas individuales, prohíbe compartir o reutilizar contraseñas institucionales y separa las cuentas administrativas de las de uso diario. También establece un mínimo de 15 caracteres, gestor institucional y MFA en accesos remotos y sistemas críticos. Las llaves API y contraseñas de servicio deben guardarse en una bóveda y nunca quedar expuestas en código o archivos públicos.</p></aside>
+</section>
+
+<section class="sgsi-slide sgsi-tone--info slide-05" data-transition="slide" data-speaker="Walder" data-duration="0:55">
+<header class="sgsi-heading">
+<div class="section-label sgsi-eyebrow sgsi-prevention-context">FASE 1 · PREVENCIÓN</div>
+<h2>¿Qué pasa si una clave ya fue filtrada?</h2>
+</header>
+<div class="sgsi-credential-layout">
+<div class="sgsi-credential-validator" aria-label="Flujo de validación de credenciales">
+<div class="sgsi-credential-validator-label"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span>VALIDADOR DE CREDENCIALES</span></div>
+<div class="sgsi-credential-flow">
+<div class="sgsi-credential-step fragment" data-fragment-index="0"><i class="fa-solid fa-key security-icon" aria-hidden="true"></i><div><span>PASO 01</span><strong>Alta / cambio de contraseña</strong></div></div>
+<div class="sgsi-credential-step fragment" data-fragment-index="1"><i class="fa-solid fa-magnifying-glass security-icon" aria-hidden="true"></i><div><span>PASO 02</span><strong>Comparar con lista de claves comprometidas</strong></div></div>
+<div class="sgsi-credential-decision fragment" data-fragment-index="2"><i class="fa-solid fa-code-compare" aria-hidden="true"></i><strong>¿COINCIDE?</strong></div>
+<div class="sgsi-credential-results fragment" data-fragment-index="3">
+<div class="sgsi-credential-result sgsi-credential-result--accept"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><span>NO</span><strong>Aceptar</strong></div></div>
+<div class="sgsi-credential-result sgsi-credential-result--reject"><i class="fa-solid fa-ban" aria-hidden="true"></i><div><span>SÍ</span><strong>Rechazar y solicitar otra</strong></div></div>
+</div>
+</div>
+</div>
+<article class="sgsi-exposure-response fragment" data-fragment-index="4">
+<div class="sgsi-exposure-response-head"><i class="fa-solid fa-triangle-exclamation security-icon" aria-hidden="true"></i><div><span>RESPUESTA RÁPIDA</span><h3>Si una cuenta aparece expuesta</h3></div></div>
+<ul>
+<li><i class="fa-solid fa-link-slash" aria-hidden="true"></i><span>Revocar sesiones y tokens</span></li>
+<li><i class="fa-solid fa-key" aria-hidden="true"></i><span>Restablecer contraseña</span></li>
+<li><i class="fa-solid fa-shield-virus" aria-hidden="true"></i><span>Revisar el equipo por posible malware</span></li>
+<li><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span>Investigar la exposición</span></li>
+</ul>
+</article>
+</div>
+<div class="sgsi-credential-privacy fragment" data-fragment-index="5"><i class="fa-solid fa-shield-halved security-icon" aria-hidden="true"></i><p>No se envía la contraseña completa ni se solicitan claves en texto claro.</p></div>
+<aside class="notes"><p><strong>Walder · 55 segundos</strong></p><p>El documento propone verificar automáticamente las contraseñas nuevas contra una lista actualizada de claves comprometidas. La comparación puede hacerse con una base local o consultando prefijos de hash, sin enviar la contraseña completa. Si hay coincidencia, se rechaza. Si una cuenta institucional aparece expuesta, se revocan sesiones y tokens, se cambia la clave y se revisa el equipo. La aparición de un correo en una filtración inicia una investigación, pero no demuestra por sí sola que la contraseña actual esté comprometida.</p></aside>
+</section>
+
+<section class="sgsi-slide sgsi-tone--warning slide-06" data-transition="fade" data-speaker="Walder" data-duration="0:50">
+<header class="sgsi-heading">
+<div class="section-label sgsi-eyebrow sgsi-prevention-context">FASE 1 · PREVENCIÓN</div>
+<h2>La seguridad también depende de las personas</h2>
+</header>
+<div class="sgsi-awareness-layout">
+<div class="sgsi-awareness-panel fragment" data-fragment-index="0">
+<div class="sgsi-awareness-panel-title"><i class="fa-solid fa-users" aria-hidden="true"></i><h3>Concientización</h3></div>
+<div class="sgsi-awareness-timeline">
+<article class="sgsi-awareness-event"><span class="sgsi-awareness-node"><i class="fa-solid fa-user-shield" aria-hidden="true"></i></span><div><strong>Inducción de seguridad</strong><span>ANTES DE HABILITAR ACCESO</span></div></article>
+<article class="sgsi-awareness-event"><span class="sgsi-awareness-node"><i class="fa-solid fa-envelope" aria-hidden="true"></i></span><div><strong>Phishing y secretos</strong><span>TRIMESTRAL</span></div></article>
+<article class="sgsi-awareness-event"><span class="sgsi-awareness-node"><i class="fa-solid fa-users-gear" aria-hidden="true"></i></span><div><strong>Taller admins/proveedores</strong><span>TRIMESTRAL</span></div></article>
+<article class="sgsi-awareness-event"><span class="sgsi-awareness-node"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span><div><strong>Simulación de incidentes</strong><span>SEMESTRAL</span></div></article>
+</div>
+</div>
+<div class="sgsi-sanction-panel">
+<div class="sgsi-sanction-panel-title"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i><h3>Respuesta proporcional</h3></div>
+<div class="sgsi-sanction-scale">
+<article class="sgsi-sanction-level sgsi-sanction-level--one fragment" data-fragment-index="1"><span class="sgsi-sanction-number">01</span><div><h3>Primera publicación accidental</h3><ul><li>Advertencia documentada</li><li>Capacitación correctiva</li></ul></div></article>
+<article class="sgsi-sanction-level sgsi-sanction-level--two fragment" data-fragment-index="2"><span class="sgsi-sanction-number">02</span><div><h3>Reincidencia o desatención consciente</h3><ul><li>Amonestación formal</li><li>Revisión de permisos</li></ul></div></article>
+<article class="sgsi-sanction-level sgsi-sanction-level--three fragment" data-fragment-index="3"><span class="sgsi-sanction-number">03</span><div><h3>Divulgación deliberada o conducta grave</h3><ul><li>Procedimiento disciplinario</li><li>Valoración jurídica</li></ul></div></article>
+</div>
+</div>
+</div>
+<div class="sgsi-awareness-principle fragment" data-fragment-index="4"><i class="fa-solid fa-shield-halved security-icon" aria-hidden="true"></i><p><span>Primero se contiene el riesgo;</span> <strong>después se evalúa la responsabilidad.</strong></p></div>
+<aside class="notes"><p><strong>Walder · 50 segundos</strong></p><p>La propuesta no se queda en tecnología. Incluye inducción, capacitación trimestral y simulaciones semestrales. Si alguien publica una credencial, primero se bloquea y se contiene el incidente. Después Recursos Humanos y asesoría jurídica evalúan evidencia, intención y reincidencia. Las medidas son proporcionales y un reporte oportuno de buena fe no se considera por sí mismo una falta.</p><p><strong>Transición a Francisco:</strong> Una buena contraseña ayuda, pero una contraseña correcta tampoco debería ser suficiente por sí sola. La segunda fase refuerza la autenticación y el acceso.</p></aside>
+</section>
+
+<section class="sgsi-slide sgsi-tone--info slide-07" data-transition="convex" data-speaker="Francisco" data-duration="1:10">
+<header class="sgsi-heading">
+<div class="section-label sgsi-eyebrow sgsi-phase">FASE 2 · AUTENTICACIÓN SEGURA</div>
+<h2>No basta con conocer la contraseña</h2>
+</header>
+<div class="sgsi-auth-controls" aria-label="Controles ISO aplicables"><span class="sgsi-iso-chip"><code>A.8.20</code> · Seguridad de redes</span><span class="sgsi-iso-chip"><code>A.8.5</code> · Autenticación segura</span><span class="sgsi-iso-chip"><code>A.8.22</code> · Segregación de redes</span></div>
+<div class="sgsi-auth-layout">
+<div class="sgsi-auth-architecture" aria-label="Ruta institucional de autenticación">
+<div class="sgsi-auth-panel-title"><i class="fa-solid fa-route" aria-hidden="true"></i><span>RUTA AUTORIZADA</span></div>
+<div class="sgsi-auth-route">
+<article class="sgsi-auth-node fragment" data-fragment-index="0"><span class="sgsi-auth-status">01</span><i class="fa-solid fa-users security-icon" aria-hidden="true"></i><div><small>ORIGEN</small><strong>Usuario / Proveedor</strong></div></article>
+<article class="sgsi-auth-node fragment" data-fragment-index="1"><span class="sgsi-auth-status">02</span><i class="fa-solid fa-fingerprint security-icon" aria-hidden="true"></i><div><small>IDENTIDAD</small><strong>Proveedor de identidad</strong></div></article>
+<article class="sgsi-auth-node fragment" data-fragment-index="2"><span class="sgsi-auth-status">03</span><i class="fa-solid fa-shield-halved security-icon" aria-hidden="true"></i><div><small>ACCESO PROTEGIDO</small><strong>VPN o puerta de enlace</strong></div></article>
+<article class="sgsi-auth-node sgsi-auth-node--system fragment" data-fragment-index="3"><span class="sgsi-auth-status">04</span><i class="fa-solid fa-server security-icon" aria-hidden="true"></i><div><small>DESTINO</small><strong>Sistema institucional</strong></div></article>
+</div>
+<div class="sgsi-auth-bypass" aria-label="Acceso directo desde Internet bloqueado"><span><i class="fa-solid fa-globe" aria-hidden="true"></i> INTERNET</span><i class="sgsi-auth-bypass-line" aria-hidden="true"></i><i class="fa-solid fa-ban" aria-hidden="true"></i><span>SISTEMA</span></div>
+</div>
+<div class="sgsi-auth-intelligence">
+<div class="sgsi-auth-factors fragment" data-fragment-index="4">
+<article class="sgsi-auth-factor sgsi-auth-factor--critical"><i class="fa-solid fa-key security-icon" aria-hidden="true"></i><div><small>USUARIOS CRÍTICOS</small><strong>FIDO2 o passkeys</strong></div></article>
+<article class="sgsi-auth-factor"><i class="fa-solid fa-mobile-screen-button security-icon" aria-hidden="true"></i><div><small>OTROS USUARIOS</small><strong>Aplicación autenticadora durante transición</strong></div></article>
+</div>
+<div class="sgsi-mfa-engine fragment" data-fragment-index="5">
+<div class="sgsi-mfa-core"><i class="fa-solid fa-fingerprint" aria-hidden="true"></i><div><small>MFA ADAPTATIVO</small><strong>Evaluación de riesgo</strong></div></div>
+<div class="sgsi-mfa-signals" aria-label="Señales evaluadas"><span><i class="fa-solid fa-laptop" aria-hidden="true"></i>Dispositivo</span><span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Ubicación aproximada</span><span><i class="fa-solid fa-clock" aria-hidden="true"></i>Horario</span><span><i class="fa-solid fa-id-badge" aria-hidden="true"></i>Rol</span><span><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>Actividad sospechosa</span></div>
+<p>Evaluar el riesgo antes de permitir la sesión</p>
+</div>
+</div>
+</div>
+<aside class="notes"><p><strong>Francisco · 1 minuto 10 segundos</strong></p><p>La segunda fase centraliza la autenticación y evita el acceso remoto directo por escritorio remoto desde Internet. El ingreso pasa por una VPN o puerta de enlace integrada al proveedor de identidad. Para administradores y funciones críticas se proponen FIDO2 o passkeys; para otros usuarios, una aplicación autenticadora durante la transición. El MFA es adaptativo porque no solo pide un segundo factor: también considera dispositivo, ubicación aproximada, horario, rol y señales de actividad sospechosa.</p></aside>
+</section>
+
+<section class="sgsi-slide sgsi-compact sgsi-tone--info slide-08" data-transition="slide" data-speaker="Francisco" data-duration="1:20">
+<header class="sgsi-heading">
+<div class="section-label sgsi-eyebrow sgsi-auth-context">FASE 2 · AUTENTICACIÓN SEGURA</div>
+<h2>Una contraseña válida no garantiza el acceso</h2>
+</header>
+<div class="sgsi-access-scene">
+<div class="sgsi-access-engine" aria-label="Motor de acceso condicional">
+<div class="sgsi-access-rules sgsi-access-rules--left fragment" data-fragment-index="1">
+<article class="sgsi-access-rule sgsi-access-rule--allow"><i aria-hidden="true"></i><div><strong>Equipo autorizado + horario permitido</strong><span>Permitir con MFA</span></div></article>
+<article class="sgsi-access-rule sgsi-access-rule--deny"><i aria-hidden="true"></i><div><strong>Dispositivo no registrado</strong><span>Bloquear sistemas críticos</span></div></article>
+<article class="sgsi-access-rule sgsi-access-rule--review"><i aria-hidden="true"></i><div><strong>Fuera de horario</strong><span>Bloquear salvo autorización</span></div></article>
+</div>
+<div class="sgsi-access-core fragment" data-fragment-index="0">
+<span class="sgsi-access-core-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span><small>MOTOR DE DECISIÓN</small><strong>Acceso condicional</strong>
+<div class="sgsi-access-outcomes fragment" data-fragment-index="2"><span class="is-allow">PERMITIR</span><span class="is-review">REVISAR</span><span class="is-deny">BLOQUEAR</span></div>
+</div>
+<div class="sgsi-access-rules sgsi-access-rules--right fragment" data-fragment-index="1">
+<article class="sgsi-access-rule sgsi-access-rule--geo"><i aria-hidden="true"></i><div><strong>IP fuera de Costa Rica sin autorización</strong><span>Bloquear + alerta</span></div></article>
+<article class="sgsi-access-rule sgsi-access-rule--deny"><i aria-hidden="true"></i><div><strong>Señales de compromiso</strong><span>Revocar sesiones + investigar</span></div></article>
+</div>
+</div>
+<div class="sgsi-access-support">
+<div class="sgsi-admin-condition fragment" data-fragment-index="3"><i class="fa-solid fa-user-lock security-icon" aria-hidden="true"></i><div><small>PRIVILEGIO ADMINISTRATIVO</small><strong>Autenticación resistente al phishing · Autorización por tiempo limitado</strong></div></div>
+<div class="sgsi-ip-note fragment" data-fragment-index="4"><i class="fa-solid fa-location-dot security-icon" aria-hidden="true"></i><p>La ubicación de una IP es una señal, no una prueba de identidad.</p></div>
+</div>
+<div class="sgsi-segment-panel fragment" data-fragment-index="5" aria-label="Segmentación de red; solo comunicaciones necesarias">
+<div class="sgsi-segment-heading"><div><i class="fa-solid fa-network-wired" aria-hidden="true"></i><strong>SEGMENTACIÓN DE RED</strong></div><span>SOLO COMUNICACIONES NECESARIAS</span></div>
+<div class="sgsi-segment-network">
+<i class="sgsi-segment-link sgsi-segment-link--users-apps" aria-hidden="true"></i><i class="sgsi-segment-link sgsi-segment-link--apps-control" aria-hidden="true"></i><i class="sgsi-segment-link sgsi-segment-link--control-data" aria-hidden="true"></i><i class="sgsi-segment-link sgsi-segment-link--admin-control" aria-hidden="true"></i><i class="sgsi-segment-link sgsi-segment-link--data-backup" aria-hidden="true"></i><span class="sgsi-segment-block sgsi-segment-block--admin" aria-hidden="true">×</span><span class="sgsi-segment-block sgsi-segment-block--backup" aria-hidden="true">×</span>
+<article class="sgsi-segment-zone sgsi-segment-zone--users"><i class="fa-solid fa-users" aria-hidden="true"></i><strong>USUARIOS</strong></article>
+<article class="sgsi-segment-zone sgsi-segment-zone--apps"><i class="fa-solid fa-server" aria-hidden="true"></i><strong>APLICACIONES</strong></article>
+<div class="sgsi-segment-control" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i><span>CONTROL</span></div>
+<article class="sgsi-segment-zone sgsi-segment-zone--data"><i class="fa-solid fa-database" aria-hidden="true"></i><strong>BASES DE DATOS</strong></article>
+<article class="sgsi-segment-zone sgsi-segment-zone--admin"><i class="fa-solid fa-user-lock" aria-hidden="true"></i><strong>ADMINISTRACIÓN</strong></article>
+<article class="sgsi-segment-zone sgsi-segment-zone--backup"><i class="fa-solid fa-box-archive" aria-hidden="true"></i><strong>RESPALDOS</strong></article>
+</div>
+</div>
+</div>
+<aside class="notes"><p><strong>Francisco · 1 minuto 20 segundos</strong></p><p>El acceso condicional agrega reglas además de la contraseña. Por ejemplo, un dispositivo no registrado no debe entrar a sistemas críticos, una IP fuera de Costa Rica sin autorización se bloquea y genera alerta, y una cuenta con señales de compromiso pierde sus sesiones. La ubicación por sí sola no prueba la identidad, por eso se combina con MFA, estado del dispositivo y monitoreo. Además, se separan las redes de usuarios, aplicaciones, bases de datos, administración y respaldos para reducir el movimiento lateral.</p><p><strong>Transición a Luis:</strong> Si aun con estas medidas el atacante logra cifrar sistemas, entra la tercera fase: contener rápido el daño y recuperar de forma controlada.</p></aside>
+</section>
+
+<section class="sgsi-slide sgsi-compact sgsi-tone--danger slide-09" data-transition="zoom" data-speaker="Luis" data-duration="1:30">
+<header class="sgsi-heading">
+<div class="section-label sgsi-eyebrow sgsi-phase">FASE 3 · CONTENCIÓN</div>
+<h2>Ransomware: aislar antes de recuperar</h2>
+</header>
+<div class="sgsi-response-scene">
+<div class="sgsi-response-rail" aria-label="Procedimiento de contención en cinco pasos">
+<article class="sgsi-response-step sgsi-response-step--detect fragment" data-fragment-index="0"><span class="sgsi-response-number">01</span><i class="fa-solid fa-magnifying-glass security-icon" aria-hidden="true"></i><div><strong>Detectar y registrar</strong><span>Hora · Cuenta · Equipos · IP · Servicios afectados<br>Abrir bitácora</span></div></article>
+<article class="sgsi-response-step sgsi-response-step--identity fragment" data-fragment-index="1"><span class="sgsi-response-number">02</span><i class="fa-solid fa-user-lock security-icon" aria-hidden="true"></i><div><strong>Bloquear identidad comprometida</strong><span>Bloquear cuenta · Revocar sesiones y tokens · Retirar privilegios</span></div></article>
+<article class="sgsi-response-step sgsi-response-step--isolate fragment" data-fragment-index="2"><span class="sgsi-response-number">03</span><i class="fa-solid fa-link-slash security-icon" aria-hidden="true"></i><div><strong>Aislar equipos y subredes</strong><span>EDR · Reglas de cuarentena<br>Restringir SMB, RDP y administración remota</span></div></article>
+<article class="sgsi-response-step sgsi-response-step--evidence fragment" data-fragment-index="3"><span class="sgsi-response-number">04</span><i class="fa-solid fa-clipboard-list security-icon" aria-hidden="true"></i><div><strong>Preservar evidencia y proteger respaldos</strong><span>Registros · Alertas · Copias sanas protegidas</span></div></article>
+<article class="sgsi-response-step sgsi-response-step--recover fragment" data-fragment-index="4"><span class="sgsi-response-number">05</span><i class="fa-solid fa-rotate security-icon" aria-hidden="true"></i><div><strong>Eliminar causa y recuperar</strong><span>Reconstruir desde imágenes confiables · Corregir vía de entrada<br>Rotar secretos · Restaurar gradualmente</span></div></article>
+</div>
+<div class="sgsi-isolation-panel" aria-label="Red semántica de contención">
+<div class="sgsi-isolation-heading"><span><i class="fa-solid fa-network-wired" aria-hidden="true"></i> RED SEMÁNTICA</span><small>RESPUESTA AL INCIDENTE</small></div>
+<div class="sgsi-isolation-network">
+<svg viewBox="0 0 420 330" preserveAspectRatio="none" aria-hidden="true">
+<path class="sgsi-isolation-link sgsi-isolation-link--user" d="M210 159 L210 48"></path>
+<path class="sgsi-isolation-link sgsi-isolation-link--admin" d="M188 168 L68 168"></path>
+<path class="sgsi-isolation-link sgsi-isolation-link--data" d="M232 168 L352 168"></path>
+<path class="sgsi-isolation-link sgsi-isolation-link--backup" d="M210 187 L210 286"></path>
+</svg>
+<article class="sgsi-isolation-node sgsi-isolation-node--user"><i class="fa-solid fa-user" aria-hidden="true"></i><strong>Usuario</strong></article>
+<article class="sgsi-isolation-node sgsi-isolation-node--admin"><i class="fa-solid fa-user-lock" aria-hidden="true"></i><strong>Administración</strong></article>
+<article class="sgsi-isolation-node sgsi-isolation-node--server"><i class="fa-solid fa-server" aria-hidden="true"></i><strong>Servidor</strong><span class="is-risk">COMPROMETIDO</span><span class="is-safe">CONTROLADO</span></article>
+<article class="sgsi-isolation-node sgsi-isolation-node--data"><i class="fa-solid fa-database" aria-hidden="true"></i><strong>Base de datos</strong></article>
+<article class="sgsi-isolation-node sgsi-isolation-node--backup"><i class="fa-solid fa-box-archive" aria-hidden="true"></i><strong>Respaldos</strong></article>
+<span class="sgsi-isolation-barrier" aria-hidden="true"><i class="fa-solid fa-link-slash"></i></span>
+</div>
+<div class="sgsi-isolation-state" aria-live="polite"><span class="is-compromised">ZONA COMPROMETIDA</span><span class="is-isolated">RED AISLADA</span><span class="is-recovery">RECUPERACIÓN CONTROLADA</span></div>
+</div>
+</div>
+<div class="sgsi-response-warning"><i class="fa-solid fa-triangle-exclamation security-icon" aria-hidden="true"></i><div><strong>Cambiar solamente la contraseña no es suficiente.</strong><span>si el directorio o el entorno ya fueron comprometidos.</span></div></div>
+<aside class="notes"><p><strong>Luis · 1 minuto 30 segundos</strong></p><p>El procedimiento se activa ante cifrado confirmado o evidencia de movimiento lateral desde una cuenta administrativa. Primero se registra el incidente y se abre una bitácora. Después se bloquea la identidad comprometida, se revocan sesiones y privilegios. Luego se aíslan equipos y subredes con EDR y reglas de cuarentena, restringiendo canales como SMB o RDP. También se preserva evidencia sin retrasar la contención y se protegen las copias sanas. Solo al final se reconstruye, se corrige la vía de entrada y se inicia una recuperación gradual.</p><p>Cambiar solamente la contraseña no es suficiente si el directorio o el entorno ya fueron comprometidos.</p></aside>
+</section>
+
+<section class="sgsi-slide sgsi-tone--warning slide-10" data-transition="fade" data-speaker="Luis" data-duration="1:05">
+<header class="sgsi-heading">
+<div class="section-label sgsi-eyebrow sgsi-continuity-context">FASE 3 · CONTINUIDAD</div>
+<h2>Seguir operando sin improvisar</h2>
+</header>
+<div class="sgsi-continuity-layout">
+<div class="sgsi-contingency-switch" aria-label="Cambio de operación normal a contingencia">
+<div class="sgsi-contingency-title"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i><span>CAMBIO DE MODO</span></div>
+<article class="sgsi-contingency-mode sgsi-contingency-mode--normal fragment" data-fragment-index="0"><span class="sgsi-contingency-status">OPERACIÓN NORMAL</span><div><i class="fa-solid fa-database security-icon" aria-hidden="true"></i><ul><li>Base de datos principal</li><li>Procesamiento habitual</li></ul></div></article>
+<div class="sgsi-contingency-trigger" aria-hidden="true"><span></span><strong>INCIDENTE</strong><i class="fa-solid fa-chevron-down"></i></div>
+<article class="sgsi-contingency-mode sgsi-contingency-mode--alternate fragment" data-fragment-index="1"><span class="sgsi-contingency-status">OPERACIÓN EN CONTINGENCIA</span><div class="sgsi-contingency-route"><i class="fa-solid fa-route security-icon" aria-hidden="true"></i><strong>Punto alterno limpio<br>o formularios controlados</strong></div><div class="sgsi-contingency-priorities fragment" data-fragment-index="2"><div><small>PRIORIDAD</small><span>Recepción de trámites</span><span>Pagos</span><span>Operaciones aduaneras críticas</span></div><div><small>POSPONER</small><span>Reportes</span><span>Tareas no esenciales</span></div></div></article>
+</div>
+<article class="sgsi-trace-document fragment" data-fragment-index="3" aria-label="Campos de trazabilidad de cada operación">
+<div class="sgsi-trace-heading"><span class="sgsi-trace-icon"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></span><div><small>REGISTRO CONTROLADO</small><h3>Cada operación debe conservar trazabilidad</h3></div></div>
+<div class="sgsi-trace-fields">
+<div><span>FOLIO ÚNICO</span><i></i></div><div><span>FECHA</span><i></i></div><div><span>CLIENTE / CONTRIBUYENTE</span><i></i></div><div><span>IMPORTE</span><i></i></div><div><span>MEDIO DE PAGO</span><i></i></div><div><span>RESPONSABLE</span><i></i></div><div class="sgsi-trace-field--evidence"><span>EVIDENCIA</span><i></i></div>
+</div>
+<div class="sgsi-trace-footer"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span>MECANISMO DE CONTINGENCIA AUTORIZADO</span></div>
+</article>
+</div>
+<div class="sgsi-trace-control fragment" data-fragment-index="4" aria-label="Doble control de verificación y conciliación"><span class="sgsi-trace-control-node"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i><strong>REGISTRO</strong></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span class="sgsi-trace-control-node"><i class="fa-solid fa-user-check" aria-hidden="true"></i><strong>SEGUNDA PERSONA VERIFICA</strong></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span class="sgsi-trace-control-node"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i><strong>CIERRE DIARIO DE CONCILIACIÓN</strong></span></div>
+<aside class="notes"><p><strong>Luis · 1 minuto 5 segundos</strong></p><p>Si la base principal queda cifrada, el documento plantea operar temporalmente desde un punto limpio o con formularios controlados. Se priorizan trámites, pagos y operaciones aduaneras críticas, mientras se posponen tareas que no afecten la continuidad inmediata. Cada operación conserva un folio único, fecha, identificación, importe, medio de pago, responsable y evidencia, y una segunda persona verifica la información. Así se evita perder trazabilidad o crear duplicados durante la emergencia.</p><p>No afirmar que un formulario interno sustituye automáticamente un comprobante fiscal. Debe usarse el mecanismo de contingencia autorizado y, si no es posible emitirlo, gestionar su emisión posterior conforme al procedimiento aplicable.</p></aside>
+</section>
+
+<section class="sgsi-slide sgsi-compact sgsi-tone--success slide-11" data-transition="convex" data-speaker="Luis" data-duration="1:15">
+<header class="sgsi-heading">
+<div class="section-label sgsi-eyebrow sgsi-recovery-context">FASE 3 · RECUPERACIÓN</div>
+<h2>Un respaldo útil es el que puede recuperarse</h2>
+</header>
+<div class="sgsi-backup-overview">
+<div class="sgsi-backup-strategy" aria-label="Estrategia de tres copias y controles de seguridad">
+<div class="sgsi-backup-title"><i class="fa-solid fa-box-archive" aria-hidden="true"></i><span>ESTRATEGIA DE RESPALDOS</span></div>
+<div class="sgsi-backup-topology fragment" data-fragment-index="0">
+<article class="sgsi-backup-node sgsi-backup-node--production"><span>01</span><i class="fa-solid fa-database" aria-hidden="true"></i><strong>Producción</strong></article>
+<i class="sgsi-backup-link" aria-hidden="true"></i>
+<article class="sgsi-backup-node sgsi-backup-node--offsite"><span>02</span><i class="fa-solid fa-server" aria-hidden="true"></i><strong>Medio distinto<br>/ fuera del sitio</strong></article>
+<span class="sgsi-backup-boundary" aria-hidden="true"><i class="fa-solid fa-link-slash"></i></span>
+<article class="sgsi-backup-node sgsi-backup-node--offline"><span>03</span><i class="fa-solid fa-box-archive" aria-hidden="true"></i><strong>Copia desconectada<br>o inmutable</strong></article>
+</div>
+<div class="sgsi-backup-security fragment" data-fragment-index="1"><span><i class="fa-solid fa-key" aria-hidden="true"></i>Credenciales diferentes de producción</span><span><i class="fa-solid fa-fingerprint" aria-hidden="true"></i>MFA para administración de respaldos</span><span><i class="fa-solid fa-user-lock" aria-hidden="true"></i>Permisos restringidos</span></div>
+</div>
+<div class="sgsi-backup-objectives fragment" data-fragment-index="2" aria-label="Objetivos temporales propuestos">
+<div class="sgsi-backup-kpi sgsi-backup-kpi--rto"><span>RTO PROPUESTO</span><strong>8 h</strong><small>tiempo de recuperación</small></div>
+<div class="sgsi-backup-kpi sgsi-backup-kpi--rpo"><span>RPO PROPUESTO</span><strong>1 h</strong><small>punto de recuperación</small></div>
+<p>Metas del ejercicio sujetas a validación mediante análisis de impacto y pruebas.</p>
+</div>
+</div>
+<div class="sgsi-recovery-sequence" aria-label="Orden de recuperación">
+<div class="sgsi-recovery-heading"><i class="fa-solid fa-route" aria-hidden="true"></i><span>ORDEN DE RECUPERACIÓN</span></div>
+<div class="sgsi-recovery-route fragment" data-fragment-index="3">
+<article class="sgsi-recovery-node"><span>01</span><strong>Red e identidad</strong></article><article class="sgsi-recovery-node"><span>02</span><strong>Bases de datos</strong></article><article class="sgsi-recovery-node"><span>03</span><strong>Aplicaciones críticas</strong></article><article class="sgsi-recovery-node"><span>04</span><strong>Pruebas de transacciones</strong></article><article class="sgsi-recovery-node"><span>05</span><strong>Conciliación de registros</strong></article><article class="sgsi-recovery-node sgsi-recovery-node--normal fragment" data-fragment-index="4"><span>06</span><strong>Retorno normal</strong></article>
+</div>
+</div>
+<div class="sgsi-backup-note fragment" data-fragment-index="5"><i class="fa-solid fa-shield-halved security-icon" aria-hidden="true"></i><div><strong>Replicar no es lo mismo que respaldar.</strong><span>La replicación también puede copiar el cifrado.</span></div></div>
+<aside class="notes"><p><strong>Luis · 1 minuto 15 segundos</strong></p><p>Los respaldos deben usar medios distintos, incluir una copia fuera del sitio y otra desconectada o inmutable, con credenciales diferentes de las de producción. La administración de respaldos también lleva MFA y permisos restringidos. Como metas del ejercicio se proponen un RTO de ocho horas y un RPO de una hora, sujetos a validación. La recuperación sigue un orden: red e identidad, bases de datos, aplicaciones críticas, pruebas, incorporación de registros de contingencia y conciliación antes de volver a la operación normal. Además, la replicación no sustituye un respaldo porque también puede replicar el cifrado.</p><p>Con esto, las tres fases se conectan como una sola estrategia: prevenir, controlar, contener y recuperar.</p><p>RTO y RPO son metas del ejercicio sujetas a validación mediante análisis de impacto y pruebas.</p></aside>
+</section>
+
+<section class="sgsi-slide sgsi-closing sgsi-tone--info slide-12" data-transition="fade" data-speaker="Luis" data-duration="0:45">
+<header class="sgsi-heading">
+<h2>El SGSI convierte un incidente en un proceso controlado</h2>
+</header>
+<div class="sgsi-defense-field" aria-label="Defensa en tres capas alrededor de los servicios tributarios y aduaneros">
+<svg class="sgsi-defense-map" viewBox="0 0 1120 390" aria-hidden="true">
+<circle class="sgsi-defense-orbit sgsi-defense-orbit--outer" cx="560" cy="170" r="154"/>
+<circle class="sgsi-defense-orbit sgsi-defense-orbit--middle" cx="560" cy="170" r="122"/>
+<circle class="sgsi-defense-orbit sgsi-defense-orbit--inner" cx="560" cy="170" r="88"/>
+<path class="sgsi-defense-link sgsi-defense-link--prevent" d="M 325 94 C 398 94, 424 118, 476 143"/>
+<path class="sgsi-defense-link sgsi-defense-link--control" d="M 795 94 C 722 94, 696 118, 644 143"/>
+<path class="sgsi-defense-link sgsi-defense-link--recover" d="M 560 258 C 560 266, 560 270, 560 278"/>
+</svg>
+<article class="sgsi-defense-layer sgsi-defense-layer--prevent fragment" data-fragment-index="0">
+<span class="sgsi-defense-number">01</span><span class="sgsi-defense-icon"><i class="fa-solid fa-key" aria-hidden="true"></i></span>
+<div><h3>PREVENIR</h3><p>Contraseñas y secretos</p><p>Concientización</p></div>
+</article>
+<article class="sgsi-defense-layer sgsi-defense-layer--control fragment" data-fragment-index="1">
+<span class="sgsi-defense-number">02</span><span class="sgsi-defense-icon"><i class="fa-solid fa-fingerprint" aria-hidden="true"></i></span>
+<div><h3>CONTROLAR</h3><p>MFA adaptativo</p><p>Acceso condicional · Segmentación</p></div>
+</article>
+<article class="sgsi-defense-layer sgsi-defense-layer--recover fragment" data-fragment-index="2">
+<span class="sgsi-defense-number">03</span><span class="sgsi-defense-icon"><i class="fa-solid fa-rotate" aria-hidden="true"></i></span>
+<div><h3>CONTENER Y RECUPERAR</h3><p>Aislamiento · Continuidad</p><p>Respaldos y restauración</p></div>
+</article>
+<div class="sgsi-defense-core fragment" data-fragment-index="3">
+<span class="sgsi-defense-core-icons"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><i class="fa-solid fa-building-columns" aria-hidden="true"></i></span>
+<strong>SERVICIOS</strong><span>TRIBUTARIOS Y<br>ADUANEROS</span><small>NÚCLEO PROTEGIDO</small>
+</div>
+</div>
+<p class="sgsi-closing-statement fragment" data-fragment-index="4"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Seguridad no es impedir todo incidente; es reducir su impacto y recuperar con control.</span></p>
+<aside class="notes"><p><strong>Luis · 45 segundos</strong></p><p>En conclusión, la propuesta funciona como una defensa en capas. Primero se busca prevenir mediante mejores credenciales y concientización. Después se controla el acceso usando autenticación, reglas condicionales y segmentación. Y si el incidente ocurre, se contiene el daño y se recuperan los servicios de forma controlada. Con esto podemos ver que un SGSI no elimina todos los riesgos, pero sí permite responder de una forma ordenada y reducir su impacto.</p></aside>
+</section>
+<section class="sgsi-slide sgsi-thanks sgsi-tone--success slide-13" data-transition="fade" data-speaker="Luis" data-duration="0:10">
+<div class="sgsi-thanks-scene">
+<svg class="sgsi-thanks-network" viewBox="0 0 1120 520" aria-hidden="true">
+<circle cx="560" cy="170" r="130"></circle>
+<circle cx="560" cy="170" r="180"></circle>
+<path d="M560 0 V80 M740 170 H880 M560 300 V478 M380 170 H240"></path>
+</svg>
+<span class="sgsi-thanks-node sgsi-thanks-node--top"><i class="fa-solid fa-key" aria-hidden="true"></i></span>
+<span class="sgsi-thanks-node sgsi-thanks-node--right"><i class="fa-solid fa-fingerprint" aria-hidden="true"></i></span>
+<span class="sgsi-thanks-node sgsi-thanks-node--bottom"><i class="fa-solid fa-rotate" aria-hidden="true"></i></span>
+<span class="sgsi-thanks-node sgsi-thanks-node--left"><i class="fa-solid fa-network-wired" aria-hidden="true"></i></span>
+<div class="sgsi-thanks-core">
+<span class="sgsi-thanks-emblem"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><i class="fa-solid fa-building-columns" aria-hidden="true"></i></span>
+<span>SGSI · MINISTERIO DE HACIENDA</span>
+</div>
+<div class="sgsi-thanks-copy">
+<span class="sgsi-thanks-check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> PRESENTACIÓN COMPLETADA</span>
+<h2>Gracias por su atención</h2>
+<p>Seguridad, continuidad y recuperación con control.</p>
+</div>
+</div>
+<aside class="notes"><p><strong>Luis · cierre</strong></p><p>Muchas gracias por su atención.</p></aside>
+</section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
